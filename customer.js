@@ -14,10 +14,8 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-    if (err) throw err;
-    // console.log("Connected as id " + connection.threadId);  
+    if (err) throw err;  
     showProducts();
-    // connection.end();
 }); 
 
 // Making a connection to the mySQL bamazon products table & displaying it using a CLI-table npm //

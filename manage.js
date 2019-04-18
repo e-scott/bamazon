@@ -1,7 +1,6 @@
 var inquirer = require("inquirer");
 var mysql = require("mysql"); 
-var Table = require("cli-table3"); 
-var chalk = require("chalk"); 
+var Table = require("cli-table3");  
 
 // Connecting to the database //
 var connection = mysql.createConnection({
@@ -14,10 +13,8 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-    if (err) throw err;
-    // console.log("Connected as id " + connection.threadId);  <--- Making sure the connection to database worked 
+    if (err) throw err; 
     showUserOptions();
-    // connection.end();
 }); 
 
 function showUserOptions () {
@@ -79,7 +76,7 @@ function displayProducts() {
         for (var i = 0; i < results.length; i++) {
             table.push([results[i].item_id, results[i].product_name, '$' + results[i].price, results[i].stock_quantity]);
         }
-        console.log(chalk.blue("Current Products for Sale"));
+        console.log("Current Products for Sale");
         console.log(table.toString());
         connection.end();
         });
@@ -100,7 +97,7 @@ function displayProducts() {
          for (var i = 0; i < results.length; i++) {
              table.push([results[i].item_id, results[i].product_name, '$' + results[i].price, results[i].stock_quantity]);
          }
-         console.log(chalk.blue("Low Inventory Products"));
+         console.log("Low Inventory Products");
          console.log(table.toString());
          connection.end();
          });
@@ -137,10 +134,10 @@ function displayProducts() {
                             item_id: userResponse.addInventory
                         }
                     ], function (err, results) {
-                        console.log(chalk.green("Added " + userResponse.howMuch));
+                        console.log("Added " + userResponse.howMuch);
                     });
                 } else {
-                    console.log(chalk.red("Sorry" + " " + userResponse.addInventory + " is not a valid ID."));
+                    console.log("Sorry" + " " + userResponse.addInventory + " is not a valid ID.");
                 }
                 connection.end(); 
             });
@@ -180,7 +177,7 @@ function displayProducts() {
                 stock_quantity: userResponse.quantity
             },
                 function(err, results) {
-                    console.log(chalk.green("Your new product has been added!"));
+                    console.log("Your new product has been added!");
                     connection.end(); 
                 });
           
